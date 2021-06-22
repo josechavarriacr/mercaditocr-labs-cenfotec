@@ -1,17 +1,58 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { Component } from 'react'
+import { render } from 'react-dom'
+import CheeseburgerMenu from 'cheeseburger-menu'
+import HamburgerMenu from 'react-hamburger-menu'
+import MenuContent from './components/menu/menu-content'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const contentStyles = {
+  fontFamily: 'sans-serif',
+  textAlign: 'center',
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      menuOpen: false,
+    }
+  }
+
+  openMenu() {
+    this.setState({ menuOpen: true })
+  }
+
+  closeMenu() {
+    this.setState({ menuOpen: false })
+  }
+
+  render() {
+    return <div>
+      <CheeseburgerMenu
+        isOpen={this.state.menuOpen}
+        closeCallback={this.closeMenu.bind(this)}>
+        <MenuContent closeCallback={this.closeMenu.bind(this)}/>
+      </CheeseburgerMenu>
+      
+      <HamburgerMenu
+        isOpen={this.state.menuOpen}
+        menuClicked={this.openMenu.bind(this)}
+        width={32}
+        height={24}
+        strokeWidth={3}
+        rotate={0}
+        color='black'
+        borderRadius={0}
+        animationDuration={0.5}
+      />
+      
+      <div style={contentStyles}>
+        <h1>Mercaditocr PoC</h1>
+        <p>An open source platform to connect entrepreneurs with local clients</p>
+      </div>
+    </div>
+  }
+}
+
+render(<App />, document.getElementById('root'))
+
