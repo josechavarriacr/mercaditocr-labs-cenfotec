@@ -3,7 +3,8 @@ import { render } from 'react-dom'
 import CheeseburgerMenu from 'cheeseburger-menu'
 import HamburgerMenu from 'react-hamburger-menu'
 import MenuContent from './components/menu/menu-content'
-
+import { SensorContainer } from './components/table/container'
+import { Clock } from './components/clock/clock'
 const contentStyles = {
   fontFamily: 'sans-serif',
   textAlign: 'center',
@@ -28,6 +29,7 @@ class App extends Component {
 
   render() {
     return <div>
+      <Clock/>
       <CheeseburgerMenu
         isOpen={this.state.menuOpen}
         closeCallback={this.closeMenu.bind(this)}>
@@ -45,11 +47,11 @@ class App extends Component {
         borderRadius={0}
         animationDuration={0.5}
       />
-      
       <div style={contentStyles}>
         <h1>Mercaditocr PoC</h1>
         <p>An open source platform to connect entrepreneurs with local clients</p>
       </div>
+      <SensorContainer/>
     </div>
   }
 }
