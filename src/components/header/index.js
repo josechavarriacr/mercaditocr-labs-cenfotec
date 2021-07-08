@@ -20,6 +20,9 @@ const Header = () => {
           <LinkContainer to="/table">
             <Nav.Link>Table</Nav.Link>
           </LinkContainer>
+          <LinkContainer to="/converter">
+            <Nav.Link>Converter</Nav.Link>
+          </LinkContainer>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
